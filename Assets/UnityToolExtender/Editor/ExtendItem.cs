@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Wing.Tools.Edtior
+namespace Wing.Tools.Editor
 {
     [Serializable]
     public class ExtendItem

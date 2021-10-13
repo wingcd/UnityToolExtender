@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 
-namespace Wing.Tools.Edtior
+namespace Wing.Tools.Editor
 {
     public class ToolExtenderWindow : EditorWindow
     {
@@ -29,6 +29,7 @@ namespace Wing.Tools.Edtior
             ToolExtenderWindow wnd = GetWindow<ToolExtenderWindow>();
             wnd.titleContent = new GUIContent("外部工具");
             wnd.minSize = wnd.maxSize = new Vector2(300, 350);
+            // 如果窗口不显示，请注释下面的if语句，并打开几次就行...
             if (wnd.position.width == 0 || wnd.position.height == 0)
             {
                 wnd.position = new Rect((Screen.currentResolution.width - 300) * 0.5f,
@@ -45,17 +46,15 @@ namespace Wing.Tools.Edtior
             _editorItem = new SerializedObject(_tempExtendItem);
             _newItems.AddRange(ToolExtends.Instance.items);
             
-            // Each editor window contains a root VisualElement object
             VisualElement root = rootVisualElement;
-
+            
+            var relDir = AssetDatabase.GetAssetPath(ToolExtends.Instance).Replace("Data/default.asset", "");
             // Import UXML
-            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/Editor/Window/ToolExtenderWindow.uxml");
+            var visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(relDir + "Window/ToolExtenderWindow.uxml");
             VisualElement container = visualTree.CloneTree();
             root.Add(container);
 
-            // A stylesheet can be added to a VisualElement.
-            // The style will be applied to the VisualElement and all of its children.
-            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Editor/Window/ToolExtenderWindow.uss");
+            var styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(relDir + "Window/ToolExtenderWindow.uss");
             root.styleSheets.Add(styleSheet);
             
             _itemConainer = container.Q<ListView>("items-container");

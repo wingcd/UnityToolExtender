@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Debug = UnityEngine.Debug;
 
-namespace Wing.Tools.Edtior
+namespace Wing.Tools.Editor
 {
     public static class SystemExt
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Wing.Tools.Edtior
+namespace Wing.Tools.Editor
 {
     public class ScriptableObjectSingleton<T> : ScriptableObject where T : ScriptableObject
     {

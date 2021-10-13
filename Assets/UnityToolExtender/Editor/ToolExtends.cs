@@ -7,7 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Wing.Tools.Edtior
+namespace Wing.Tools.Editor
 {
     public class ToolExtends : ScriptableObjectSingleton<ToolExtends>
     {
@@ -17,7 +17,7 @@ namespace Wing.Tools.Edtior
 
         public static string GetMethodName(string title)
         {
-            return title.GetHashCode().ToString().Replace("-", "_");
+            return title.ToLower().GetHashCode().ToString().Replace("-", "_");
         }
 
         static string FixString(string value)
@@ -60,14 +60,18 @@ namespace Wing.Tools.Edtior
         public static void Run(string title)
         {
             var type = typeof(__tools__);
-            var method = type.GetMethod(GetMethodName(title));
+            var name = "_" + GetMethodName(title);
+           var methods =  type.GetMethods();
+            var method = type.GetMethod(name, BindingFlags.Static | BindingFlags.InvokeMethod | BindingFlags.NonPublic);
             if (method != null)
             {
-                method.Invoke(null, 
+                method.Invoke(
+                    null,
                     BindingFlags.Static | BindingFlags.InvokeMethod, 
                     null, 
                     null, 
-                    null);
+                    null
+                    );
             }
         }
     }

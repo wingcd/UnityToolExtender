@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Wing.Tools.Edtior
+namespace Wing.Tools.Editor
 {
     public class TempExtendItem: ScriptableObject
     {
