@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f5cd517ff30434a987d04a2849bdc3b, type: 3}
+  m_Name: default
+  m_EditorClassIdentifier: 
+  classTemp: {fileID: 4900000, guid: d6bdb2456c474a3688976046bf26ad4a, type: 3}
+  methodTemp: {fileID: 4900000, guid: dbc6687f95a44404b50011625bc53885, type: 3}
+  items:
+  - title: Tools/note pad
+    command: C:\Windows\SysWOW64\notepad.exe
+    paramaters: __extend_tools__.cs
+    workspace: D:\wing\projects\unity\wing_plugins\UnityToolExtender\Assets\Editor\__code__
+    silence: 1

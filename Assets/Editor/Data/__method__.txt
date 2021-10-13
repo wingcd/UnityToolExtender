@@ -1,0 +1,6 @@
+        [MenuItem("{TITLE}")]
+        static void _{METHOD_NAME}()
+        {
+            "{COMMAND}".Execute("{PARAMATERS}", "{WORKSPACE}", {SILENCE});
+        }
+        

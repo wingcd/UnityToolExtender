@@ -1,0 +1,10 @@
+﻿using UnityEditor;
+using Wing.Tools.Edtior;
+
+namespace Wing.Tools.Editor
+{
+    public static partial class __tools__
+    {
+{ALL_METHODS}
+    }
+}

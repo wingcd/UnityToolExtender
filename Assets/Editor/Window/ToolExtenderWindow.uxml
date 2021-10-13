@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
+>
+    <engine:VisualElement class="body">
+        <engine:Label text="菜单内容：" />
+        <engine:VisualElement class="horizontal meum-container">
+            <engine:VisualElement class="menu-left">
+                <engine:ListView name="items-container" class="menu-scroller">                
+                </engine:ListView>
+            </engine:VisualElement>
+            <engine:VisualElement class="menu-right">
+                <engine:VisualElement style="height:50%;">
+                    <engine:Button name="btn-add" text="添加" class="menu-btn"/>
+                    <engine:Button name="btn-del" text="删除" class="menu-btn"/>
+                </engine:VisualElement>
+                <engine:VisualElement style="height:50%; flex-direction: column-reverse;">
+                    <engine:Button name="btn-down" text="下移" class="menu-btn"/>
+                    <engine:Button name="btn-up" text="上移" class="menu-btn"/>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:VisualElement name="input-container">
+            <engine:TextField text="" label="标题：" class="input-field" binding-path="title"/>
+            <engine:VisualElement class="horizontal">
+                <engine:TextField text="" label="命令：" name="txt-title" class="input-field input-field-right" binding-path="command"/>
+                <engine:Button text="..." name="btn-open-cmd"/>
+            </engine:VisualElement>
+            <engine:TextField text="" label="参数：" class="input-field" binding-path="paramaters"/>
+            <engine:VisualElement class="horizontal">
+                <engine:TextField text="" label="初始目录：" class="input-field  input-field-right" binding-path="workspace"/>
+                <engine:Button text="..." name="btn-open-ws"/>
+            </engine:VisualElement>
+            <engine:VisualElement class="options-area">
+                <engine:Toggle text="静默执行" binding-path="silence"/>
+            </engine:VisualElement>
+            <engine:VisualElement class="buttons-area">
+                <engine:Button name="btn-test" text="测试" class="buttons-btn"/>
+                <engine:Button name="btn-accept" text="应用" class="buttons-btn"/>
+                <engine:Button name="btn-cancel" text="取消" class="buttons-btn"/>
+                <engine:Button name="btn-ok" text="确定" class="buttons-btn"/>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
