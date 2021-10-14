@@ -1,6 +1,6 @@
         [MenuItem("{TITLE}")]
-        static void _{METHOD_NAME}()
+        static void {METHOD_NAME}()
         {
-            "{COMMAND}".Execute("{PARAMATERS}", "{WORKSPACE}", {SILENCE});
+            ToolExtends.Run("{TITLE}");
         }
         

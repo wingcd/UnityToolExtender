@@ -17,7 +17,7 @@ namespace Wing.Tools.Editor
 
         public static string GetMethodName(string title)
         {
-            return title.ToLower().GetHashCode().ToString().Replace("-", "_");
+            return "_" + title.ToLower().GetHashCode().ToString().Replace("-", "_");
         }
 
         static string FixString(string value)
@@ -37,11 +37,7 @@ namespace Wing.Tools.Editor
                 {
                     var item = items[i];
                     var funcStr = func.Replace("{TITLE}", item.title)
-                        .Replace("{METHOD_NAME}", GetMethodName(item.title))
-                        .Replace("{COMMAND}", FixString(item.command))
-                        .Replace("{PARAMATERS}", FixString(item.paramaters))
-                        .Replace("{WORKSPACE}", FixString(item.workspace))
-                        .Replace("{SILENCE}", item.silence.ToString().ToLower());
+                        .Replace("{METHOD_NAME}", GetMethodName(item.title));
                     list.Add(funcStr);
                 }
 
@@ -59,19 +55,18 @@ namespace Wing.Tools.Editor
 
         public static void Run(string title)
         {
-            var type = typeof(__tools__);
-            var name = "_" + GetMethodName(title);
-           var methods =  type.GetMethods();
-            var method = type.GetMethod(name, BindingFlags.Static | BindingFlags.InvokeMethod | BindingFlags.NonPublic);
-            if (method != null)
+            for (var i = 0; i < Instance.items.Count; i++)
             {
-                method.Invoke(
-                    null,
-                    BindingFlags.Static | BindingFlags.InvokeMethod, 
-                    null, 
-                    null, 
-                    null
-                    );
+                var item = Instance.items[i];
+                if (item != null)
+                {
+                    var method = GetMethodName(item.title);
+                    if (method == GetMethodName(title))
+                    {
+                        item.Run();
+                        return;
+                    }
+                }
             }
         }
     }

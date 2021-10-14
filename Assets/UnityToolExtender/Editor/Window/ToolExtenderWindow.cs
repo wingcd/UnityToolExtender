@@ -240,10 +240,7 @@ namespace Wing.Tools.Editor
 
         void OnTest()
         {
-            _tempExtendItem.command.Execute(
-                _tempExtendItem.paramaters, 
-                _tempExtendItem.workspace, 
-                _tempExtendItem.silence);
+            _tempExtendItem.ToItem().Run();
         }
 
         void Save(bool close)

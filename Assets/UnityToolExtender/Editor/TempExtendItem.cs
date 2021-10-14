@@ -27,5 +27,12 @@ namespace Wing.Tools.Editor
             item.workspace = workspace;
             item.silence = silence;
         }
+
+        public ExtendItem ToItem()
+        {
+            var item = new ExtendItem();
+            To(item);
+            return item;
+        }
     }
 }

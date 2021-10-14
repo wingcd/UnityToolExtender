@@ -18,10 +18,10 @@ MonoBehaviour:
   - title: Tools/note pad
     command: C:\Windows\SysWOW64\notepad.exe
     paramaters: __extend_tools__.cs
-    workspace: D:\wing\projects\unity\wing_plugins\UnityToolExtender\Assets\Editor\__code__
+    workspace: D:/wing/projects/unity/wing_plugins/UnityToolExtender/Assets/UnityToolExtender/Editor/__code__
     silence: 1
   - title: Tools/cmd11
     command: 
     paramaters: 
     workspace: 
-    silence: 1
+    silence: 0

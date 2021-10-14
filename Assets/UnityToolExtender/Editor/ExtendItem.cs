@@ -10,5 +10,10 @@ namespace Wing.Tools.Editor
         public string paramaters = "";
         public string workspace = "";
         public bool silence = true;
+
+        public void Run()
+        {
+            command.Execute(paramaters, workspace, silence);
+        }
     }
 }
