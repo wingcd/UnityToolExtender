@@ -63,8 +63,13 @@ namespace Wing.Tools.Editor
             _itemConainer.makeItem = () => new Label();
             _itemConainer.bindItem = OnBindItem;
             _itemConainer.itemsSource = _newItems;
+#if UNITY_2021_2_OR_NEWER
+            _itemConainer.onItemsChosen += OnItemChose;
+            _itemConainer.onSelectionChange += OnSelectionChanged;
+#else
             _itemConainer.onItemChosen += OnItemChose;
             _itemConainer.onSelectionChanged += OnSelectionChanged;
+#endif
 
             _btnAdd = container.Q<Button>("btn-add");
             _btnAdd.clicked += OnAddClick;
@@ -146,7 +151,11 @@ namespace Wing.Tools.Editor
             
         }
 
+#if UNITY_2021_2_OR_NEWER
+        void OnSelectionChanged(IEnumerable<object> objs)
+#else
         void OnSelectionChanged(List<object> objs)
+#endif
         {
             if (_prevItem != null)
             {
