@@ -151,7 +151,7 @@ namespace Wing.Tools.Editor
             
         }
 
-#if UNITY_2021_2_OR_NEWER
+#if UNITY_2021_1_OR_NEWER
         void OnSelectionChanged(IEnumerable<object> objs)
 #else
         void OnSelectionChanged(List<object> objs)
@@ -182,7 +182,11 @@ namespace Wing.Tools.Editor
                 title = "Tools/New Tool " + _newItems.Count
             });
 
+#if UNITY_2021_2_OR_NEWER
+            _itemConainer.Rebuild();
+#else
             _itemConainer.Refresh();
+#endif
 
             _itemConainer.selectedIndex = _newItems.Count - 1;
 
@@ -199,7 +203,11 @@ namespace Wing.Tools.Editor
 
             _newItems.RemoveAt(oldIndex);
             
+#if UNITY_2021_2_OR_NEWER
+            _itemConainer.Rebuild();
+#else
             _itemConainer.Refresh();
+#endif
             
             if (_newItems.Count > 0)
             {
@@ -218,7 +226,11 @@ namespace Wing.Tools.Editor
                 _newItems.Insert(_itemConainer.selectedIndex-1, obj);
                 _itemConainer.selectedIndex--;
                 
+#if UNITY_2021_2_OR_NEWER
+            _itemConainer.Rebuild();
+#else
                 _itemConainer.Refresh();
+#endif
                 CheckButtons();
             }
         }
@@ -232,19 +244,31 @@ namespace Wing.Tools.Editor
                 _newItems.Insert(_itemConainer.selectedIndex+1, obj);
                 _itemConainer.selectedIndex++;
                 
+#if UNITY_2021_2_OR_NEWER
+            _itemConainer.Rebuild();
+#else
                 _itemConainer.Refresh();
+#endif
                 CheckButtons();
             }
         }
 
         void OnOpenCmdClick()
         {
-            _tempExtendItem.command = EditorUtility.OpenFilePanel("select command", Application.dataPath, "");
+            var path = EditorUtility.OpenFilePanel("select command", Application.dataPath, "");
+            if (!string.IsNullOrEmpty(path))
+            {
+                _tempExtendItem.command = path;
+            }
         }
 
         void OnOpenWSClick()
         {
-            _tempExtendItem.workspace = EditorUtility.OpenFolderPanel("select workspace", Application.dataPath, "");
+            var path =  EditorUtility.OpenFolderPanel("select workspace", Application.dataPath, "");
+            if (!string.IsNullOrEmpty(path))
+            {
+                _tempExtendItem.workspace = path;
+            }
         }
 
         void OnTest()
