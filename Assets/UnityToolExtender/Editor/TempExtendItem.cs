@@ -9,6 +9,7 @@ namespace Wing.Tools.Editor
         public string paramaters;
         public string workspace;
         public bool silence;
+        public bool alert;
 
         public void From(ExtendItem item)
         {
@@ -17,6 +18,7 @@ namespace Wing.Tools.Editor
             paramaters = item.paramaters;
             workspace = item.workspace;
             silence = item.silence;
+            alert = item.alert;
         }
 
         public void To(ExtendItem item)
@@ -26,6 +28,7 @@ namespace Wing.Tools.Editor
             item.paramaters = paramaters;
             item.workspace = workspace;
             item.silence = silence;
+            item.alert = alert;
         }
 
         public ExtendItem ToItem()

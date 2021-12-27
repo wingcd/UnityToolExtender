@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -27,7 +27,7 @@ namespace Wing.Tools.Editor
             start.Arguments = argument;
             start.CreateNoWindow = noWindow;
             start.ErrorDialog = true;
-            start.UseShellExecute = false;
+            start.UseShellExecute = !noWindow;
 
             if (!string.IsNullOrEmpty(workingDir))
             {
@@ -40,21 +40,32 @@ namespace Wing.Tools.Editor
                 start.WorkingDirectory = Application.dataPath; // typeof(SystemExt).Assembly.Location + "/../../../";
             }
 
-            start.RedirectStandardOutput = true;
-            start.RedirectStandardError = true;
-            start.RedirectStandardInput = true;
-            start.StandardOutputEncoding = UTF8Encoding.UTF8;
-            start.StandardErrorEncoding = UTF8Encoding.UTF8;
+            start.RedirectStandardOutput = noWindow;
+            start.RedirectStandardError = noWindow;
+            start.RedirectStandardInput = noWindow;
+            if (noWindow)
+            {
+                start.StandardOutputEncoding = UTF8Encoding.UTF8;
+                start.StandardErrorEncoding = UTF8Encoding.UTF8;
+            }
 
             Process p = Process.Start(start);
             p.Exited += (sender, e) => { UnityEngine.Debug.Log("Execute " + command + " done!"); };
-            p.ErrorDataReceived += (sender, e) => { UnityEngine.Debug.LogError(e.Data); };
+            p.ErrorDataReceived += (sender, e) =>
+            {
+                UnityEngine.Debug.LogError(e.Data);
+            };
+            p.OutputDataReceived += (sender, args) =>
+            {
+                UnityEngine.Debug.Log(args.Data);
+            };
+            p.WaitForExit();
 
-            if (needWait)
+            if (noWindow)
             {
                 var ret = p.StandardOutput.ReadToEnd();
                 UnityEngine.Debug.Log(ret);
-                return ret;
+                return "";
             }
 
             return "";

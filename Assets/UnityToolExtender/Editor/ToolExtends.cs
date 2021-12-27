@@ -53,7 +53,7 @@ namespace Wing.Tools.Editor
             AssetDatabase.Refresh();
         }
 
-        public static void Run(string title)
+        public static void Run(string title, string extParms = null, bool? _silence = null, bool? _alert = null)
         {
             for (var i = 0; i < Instance.items.Count; i++)
             {
@@ -63,7 +63,7 @@ namespace Wing.Tools.Editor
                     var method = GetMethodName(item.title);
                     if (method == GetMethodName(title))
                     {
-                        item.Run();
+                        item.Run(extParms, _silence, _alert);
                         return;
                     }
                 }
