@@ -15,7 +15,27 @@ namespace Wing.Tools.Editor
         public static string Execute(this string command, string argument, string workingDir = null, bool noWindow = true, bool needWait = false)
         {
             command = command.Replace("{DATA_PATH}", Application.dataPath);
-            
+
+            var cmdext = Path.GetExtension(command);
+            if (string.IsNullOrEmpty(cmdext))
+            {
+                var exts = new string[0];
+#if UNITY_EDITOR_WIN
+                exts = new[] {".exe", ".bat"};
+#else
+                exts = new[] {"", ".sh"};
+#endif
+                foreach (var ext in exts)
+                {
+                    var f = command + ext;
+                    if (File.Exists(f))
+                    {
+                        command = f;
+                        break;
+                    }
+                }
+            }
+
             if (string.IsNullOrEmpty(command))
             {
                 Debug.LogError($"command can not be empty");
@@ -59,7 +79,11 @@ namespace Wing.Tools.Editor
             {
                 UnityEngine.Debug.Log(args.Data);
             };
-            p.WaitForExit();
+
+            if (needWait)
+            {
+                p.WaitForExit();
+            }
 
             if (noWindow)
             {

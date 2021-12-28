@@ -36,7 +36,9 @@
             </engine:VisualElement>
             <engine:VisualElement class="options-area horizontal">
                 <engine:Toggle text="静默执行" binding-path="silence"/>
+                <engine:Toggle text="等待完成" binding-path="waitexit"/>
                 <engine:Toggle text="二次确认" binding-path="alert"/>
+                <engine:Toggle text="显示菜单" binding-path="showInMenu"/>
             </engine:VisualElement>
             <engine:VisualElement class="buttons-area">
                 <engine:Button name="btn-test" text="测试" class="buttons-btn"/>

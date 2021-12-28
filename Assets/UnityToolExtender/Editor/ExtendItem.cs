@@ -12,8 +12,10 @@ namespace Wing.Tools.Editor
         public string workspace = "";
         public bool silence = false;
         public bool alert = false;
+        public bool waitexit = true;
+        public bool showInMenu = true;
 
-        public void Run(string extParams = null, bool? _silence = null, bool? _alert = null)
+        public void Run(string extParams = null, bool? _silence = null, bool? _alert = null, bool? waitexit = null)
         {
             var parms = paramaters;
             if (!string.IsNullOrEmpty(extParams))
@@ -34,7 +36,13 @@ namespace Wing.Tools.Editor
                     return;
                 }
             }
-            command.Execute(parms, workspace, sil, !sil);
+
+            var wait = this.waitexit;
+            if (waitexit != null)
+            {
+                wait = waitexit.Value;
+            }
+            command.Execute(parms, workspace, sil, wait);
         }
     }
 }

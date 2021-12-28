@@ -10,6 +10,8 @@ namespace Wing.Tools.Editor
         public string workspace;
         public bool silence;
         public bool alert;
+        public bool waitexit;
+        public bool showInMenu;
 
         public void From(ExtendItem item)
         {
@@ -19,6 +21,8 @@ namespace Wing.Tools.Editor
             workspace = item.workspace;
             silence = item.silence;
             alert = item.alert;
+            waitexit = item.waitexit;
+            showInMenu = item.showInMenu;
         }
 
         public void To(ExtendItem item)
@@ -29,6 +33,8 @@ namespace Wing.Tools.Editor
             item.workspace = workspace;
             item.silence = silence;
             item.alert = alert;
+            item.waitexit = waitexit;
+            item.showInMenu = showInMenu;
         }
 
         public ExtendItem ToItem()

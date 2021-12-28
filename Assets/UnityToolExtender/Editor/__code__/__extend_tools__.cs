@@ -9,16 +9,34 @@ namespace Wing.Tools.Editor
 {
     public static partial class __tools__
     {
-        [MenuItem("Tools/note pad")]
-        static void __1026190295()
+        [MenuItem("Tools/配置导出")]
+        static void __1212904787()
         {
-            ToolExtends.Run("Tools/note pad");
+            ToolExtends.Run("Tools/配置导出");
         }
         
-        [MenuItem("Tools/cmd11")]
-        static void __604536796()
+        [MenuItem("Build/Android/安装AAB")]
+        static void _273163855()
         {
-            ToolExtends.Run("Tools/cmd11");
+            ToolExtends.Run("Build/Android/安装AAB");
+        }
+        
+        [MenuItem("Build/Android/安装APK")]
+        static void __2005380813()
+        {
+            ToolExtends.Run("Build/Android/安装APK");
+        }
+        
+        [MenuItem("CDN上传/Android-PRO")]
+        static void _618931775()
+        {
+            ToolExtends.Run("CDN上传/Android-PRO");
+        }
+        
+        [MenuItem("CDN上传/Android-DEV")]
+        static void _665985297()
+        {
+            ToolExtends.Run("CDN上传/Android-DEV");
         }
         
     }
