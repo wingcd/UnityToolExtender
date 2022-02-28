@@ -36,7 +36,9 @@ namespace Wing.Tools.Editor
                 for (var i = 0; i < items.Count; i++)
                 {
                     var item = items[i];
-                    var funcStr = func.Replace("{TITLE}", item.title)
+                    var funcStr = func
+                        .Replace("{SHOW_MENU}", item.showInMenu ? "" : "//")
+                        .Replace("{TITLE}", item.title)
                         .Replace("{METHOD_NAME}", GetMethodName(item.title));
                     list.Add(funcStr);
                 }
@@ -53,7 +55,7 @@ namespace Wing.Tools.Editor
             AssetDatabase.Refresh();
         }
 
-        public static void Run(string title)
+        public static void Run(string title, string extParms = null, bool? _silence = null, bool? _alert = null, bool? _waitexit = null)
         {
             for (var i = 0; i < Instance.items.Count; i++)
             {
@@ -63,7 +65,7 @@ namespace Wing.Tools.Editor
                     var method = GetMethodName(item.title);
                     if (method == GetMethodName(title))
                     {
-                        item.Run();
+                        item.Run(extParms, _silence, _alert, _waitexit);
                         return;
                     }
                 }

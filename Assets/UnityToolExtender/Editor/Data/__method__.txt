@@ -1,4 +1,4 @@
-        [MenuItem("{TITLE}")]
+        {SHOW_MENU}[MenuItem("{TITLE}")]
         static void {METHOD_NAME}()
         {
             ToolExtends.Run("{TITLE}");
